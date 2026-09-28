@@ -1,0 +1,117 @@
+:root {
+  --fs-primary: #2563eb;
+  --fs-dark: #0f172a;
+  --fs-muted: #64748b;
+  --fs-light: #f8fafc;
+}
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--fs-dark);
+  background: #fff;
+}
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--fs-primary);
+  font-size: .85rem;
+  margin-right: .45rem;
+}
+.hero {
+  background: radial-gradient(circle at 85% 20%, rgba(37,99,235,.22), transparent 35%),
+              linear-gradient(135deg, #0f172a, #172554);
+  color: white;
+}
+.hero .lead { color: #dbeafe; }
+.section-space { padding: 5rem 0; }
+.card-soft {
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  box-shadow: 0 12px 35px rgba(15,23,42,.06);
+  height: 100%;
+}
+.stat-card {
+  border-radius: 1rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  padding: 1.5rem;
+  height: 100%;
+}
+.stat-number { font-size: 2.3rem; font-weight: 800; color: var(--fs-primary); }
+.eyebrow {
+  color: var(--fs-primary);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .78rem;
+}
+.page-hero {
+  background: var(--fs-light);
+  border-bottom: 1px solid #e2e8f0;
+}
+.icon-box {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #eff6ff;
+  color: var(--fs-primary);
+  font-weight: 800;
+}
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+.timeline:before {
+  content: "";
+  position: absolute;
+  left: .45rem;
+  top: .25rem;
+  bottom: .25rem;
+  width: 2px;
+  background: #dbeafe;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.75rem;
+}
+.timeline-item:before {
+  content: "";
+  position: absolute;
+  left: -1.68rem;
+  top: .25rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--fs-primary);
+  border: 3px solid #dbeafe;
+}
+.project-tag {
+  display: inline-block;
+  background: #f1f5f9;
+  color: #334155;
+  border-radius: 999px;
+  padding: .45rem .7rem;
+  margin: .2rem;
+  font-size: .9rem;
+}
+.footer-link { color: #cbd5e1; text-decoration: none; }
+.footer-link:hover { color: #fff; }
+.admin-shell { min-height: 70vh; background: #f8fafc; }
+.table td, .table th { vertical-align: middle; }
+.status-pill {
+  font-size: .75rem;
+  border-radius: 999px;
+  padding: .35rem .6rem;
+}
+.loading {
+  min-height: 30vh;
+  display: grid;
+  place-items: center;
+}
+@media (max-width: 767.98px) {
+  .section-space { padding: 3.25rem 0; }
+}
