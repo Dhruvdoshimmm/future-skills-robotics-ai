@@ -1,0 +1,60 @@
+<section class="page-hero py-5">
+  <div class="container">
+    <div class="eyebrow">Let's Build Together</div>
+    <h1 class="display-5 fw-bold mt-2">Contact Us</h1>
+    <p class="lead text-secondary mb-0">Tell us about your school and we'll get back to you.</p>
+  </div>
+</section>
+
+<section class="section-space">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <div class="card-soft p-4">
+          <h4 class="fw-bold">Future Skills – Robotics & AI</h4>
+          <p class="text-secondary">Future-ready Robotics, Artificial Intelligence & Hands-On Technology Education for Grades 1–12.</p>
+          <hr>
+          <p class="mb-2"><strong>Phone</strong><br>+91 63826 20864</p>
+          <p class="mb-2"><strong>Email</strong><br><a href="mailto:info@futureskillai.in">info@futureskillai.in</a></p>
+          <p class="mb-0"><strong>Website</strong><br><a href="https://www.futureskillsroboticsai.com" target="_blank" rel="noopener">futureskillsroboticsai.com</a></p>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="card-soft p-4 p-lg-5">
+          <div class="alert alert-success" ng-if="success">{{success}}</div>
+          <div class="alert alert-danger" ng-if="error">{{error}}</div>
+          <form name="contactForm" ng-submit="submit()" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">School Name *</label>
+                <input class="form-control" name="school_name" ng-model="form.school_name" required maxlength="150">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Name *</label>
+                <input class="form-control" name="name" ng-model="form.name" required maxlength="120">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Email *</label>
+                <input type="email" class="form-control" name="email" ng-model="form.email" required maxlength="190">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Phone *</label>
+                <input class="form-control" name="phone" ng-model="form.phone" required maxlength="30">
+              </div>
+              <div class="col-12">
+                <label class="form-label">Message *</label>
+                <textarea class="form-control" name="message" ng-model="form.message" rows="6" required maxlength="4000"></textarea>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-primary btn-lg" type="submit" ng-disabled="submitting || contactForm.$invalid">
+                  <span ng-if="!submitting">Send Request</span>
+                  <span ng-if="submitting"><span class="spinner-border spinner-border-sm me-2"></span>Sending…</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

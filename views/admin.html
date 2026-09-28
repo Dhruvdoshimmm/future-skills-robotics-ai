@@ -1,0 +1,157 @@
+<section class="admin-shell py-5">
+  <div class="container">
+    <div ng-if="!token" class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card-soft bg-white p-4 p-lg-5">
+          <div class="eyebrow">Protected Area</div>
+          <h2 class="fw-bold mt-2">Administrator Login</h2>
+          <p class="text-secondary">Sign in to manage published content and respond to school inquiries.</p>
+          <div class="alert alert-danger" ng-if="error">{{error}}</div>
+          <form ng-submit="signIn()" novalidate>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input class="form-control" type="email" ng-model="login.email" required autocomplete="username">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input class="form-control" type="password" ng-model="login.password" required autocomplete="current-password">
+            </div>
+            <button class="btn btn-primary w-100" type="submit" ng-disabled="authBusy">
+              {{authBusy ? 'Signing in…' : 'Sign in'}}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="token">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+          <div class="eyebrow">Content Management</div>
+          <h1 class="fw-bold mb-0">Admin Dashboard</h1>
+        </div>
+        <button class="btn btn-outline-secondary" ng-click="logout()">Sign out</button>
+      </div>
+
+      <div class="alert alert-danger" ng-if="error">{{error}}</div>
+      <div class="alert alert-success" ng-if="saved">{{saved}}</div>
+
+      <div class="card-soft bg-white p-3 p-lg-4 mb-4">
+        <div class="d-flex flex-wrap gap-2 mb-4">
+          <button class="btn" ng-class="activePage === 'home' ? 'btn-primary' : 'btn-outline-primary'" ng-click="selectPage('home')">Home</button>
+          <button class="btn" ng-class="activePage === 'scope' ? 'btn-primary' : 'btn-outline-primary'" ng-click="selectPage('scope')">Scope</button>
+          <button class="btn" ng-class="activePage === 'skills' ? 'btn-primary' : 'btn-outline-primary'" ng-click="selectPage('skills')">Future Ready Skills</button>
+        </div>
+
+        <div ng-if="loading" class="py-5 text-center"><div class="spinner-border text-primary"></div></div>
+
+        <form ng-if="!loading" ng-submit="saveContent()">
+          <div ng-if="activePage === 'home'">
+            <div class="row g-3">
+              <div class="col-md-6"><label class="form-label">Hero Eyebrow</label><input class="form-control" ng-model="content.hero_eyebrow"></div>
+              <div class="col-md-6"><label class="form-label">Hero Title</label><input class="form-control" ng-model="content.hero_title"></div>
+              <div class="col-12"><label class="form-label">Hero Description</label><textarea class="form-control" rows="3" ng-model="content.hero_description"></textarea></div>
+              <div class="col-md-4"><label class="form-label">Months</label><input class="form-control" ng-model="content.stats_months"></div>
+              <div class="col-md-4"><label class="form-label">Sessions / Month</label><input class="form-control" ng-model="content.stats_sessions"></div>
+              <div class="col-md-4"><label class="form-label">Projects</label><input class="form-control" ng-model="content.stats_projects"></div>
+              <div class="col-12"><label class="form-label">Value Section Title</label><input class="form-control" ng-model="content.value_title"></div>
+              <div class="col-12"><label class="form-label">Value Section Description</label><textarea class="form-control" rows="3" ng-model="content.value_description"></textarea></div>
+              <div class="col-12"><h6 class="fw-bold mt-2">Core Value Propositions</h6></div>
+              <div class="col-md-4" ng-repeat="item in content.value_props">
+                <div class="border rounded-3 p-3 h-100">
+                  <label class="form-label">Title</label><input class="form-control mb-2" ng-model="item.title">
+                  <label class="form-label">Description</label><textarea class="form-control" rows="4" ng-model="item.description"></textarea>
+                </div>
+              </div>
+              <div class="col-12"><label class="form-label">Zero Investment Title</label><input class="form-control" ng-model="content.zero_investment_title"></div>
+              <div class="col-12"><label class="form-label">Zero Investment Description</label><textarea class="form-control" rows="3" ng-model="content.zero_investment_description"></textarea></div>
+            </div>
+          </div>
+
+          <div ng-if="activePage === 'scope'">
+            <div class="row g-3">
+              <div class="col-md-6"><label class="form-label">Eyebrow</label><input class="form-control" ng-model="content.eyebrow"></div>
+              <div class="col-md-6"><label class="form-label">Title</label><input class="form-control" ng-model="content.title"></div>
+              <div class="col-12"><label class="form-label">Description</label><textarea class="form-control" rows="3" ng-model="content.description"></textarea></div>
+              <div class="col-12"><h6 class="fw-bold mt-2">Sessions</h6></div>
+              <div class="col-md-6" ng-repeat="session in content.sessions">
+                <div class="border rounded-3 p-3">
+                  <label class="form-label">Session {{session.number}} Title</label><input class="form-control mb-2" ng-model="session.title">
+                  <label class="form-label">Description</label><textarea class="form-control" rows="3" ng-model="session.description"></textarea>
+                </div>
+              </div>
+              <div class="col-12"><h6 class="fw-bold mt-2">Learning Levels</h6></div>
+              <div class="col-md-6" ng-repeat="level in content.levels">
+                <div class="border rounded-3 p-3">
+                  <label class="form-label">Grade Range</label><input class="form-control mb-2" ng-model="level.grade">
+                  <label class="form-label">Focus</label><input class="form-control" ng-model="level.focus">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div ng-if="activePage === 'skills'">
+            <div class="row g-3">
+              <div class="col-md-6"><label class="form-label">Eyebrow</label><input class="form-control" ng-model="content.eyebrow"></div>
+              <div class="col-md-6"><label class="form-label">Title</label><input class="form-control" ng-model="content.title"></div>
+              <div class="col-12"><label class="form-label">Description</label><textarea class="form-control" rows="3" ng-model="content.description"></textarea></div>
+              <div class="col-md-4" ng-repeat="foundation in content.foundations">
+                <div class="border rounded-3 p-3 h-100">
+                  <label class="form-label">Title</label><input class="form-control mb-2" ng-model="foundation.title">
+                  <label class="form-label">Description</label><textarea class="form-control" rows="3" ng-model="foundation.description"></textarea>
+                </div>
+              </div>
+              <div class="col-12"><label class="form-label">Creator Title</label><input class="form-control" ng-model="content.creator_title"></div>
+              <div class="col-12"><label class="form-label">Creator Description</label><textarea class="form-control" rows="3" ng-model="content.creator_description"></textarea></div>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <button class="btn btn-primary" type="submit" ng-disabled="saveBusy">
+              {{saveBusy ? 'Saving…' : 'Save Content'}}
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card-soft bg-white p-3 p-lg-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <div class="eyebrow">Contact Requests</div>
+            <h3 class="fw-bold mb-0">Incoming Inquiries</h3>
+          </div>
+          <span class="badge text-bg-secondary">{{messages.length}} total</span>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead>
+              <tr><th>School</th><th>Contact</th><th>Message</th><th>Status</th><th style="min-width: 300px">Reply</th></tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="message in messages">
+                <td><strong>{{message.school_name}}</strong><br><small class="text-secondary">{{message.created_at | date:'medium'}}</small></td>
+                <td>{{message.name}}<br><a ng-href="mailto:{{message.email}}">{{message.email}}</a><br>{{message.phone}}</td>
+                <td style="min-width: 240px">{{message.message}}</td>
+                <td>
+                  <span class="status-pill" ng-class="message.status === 'Replied' ? 'bg-success-subtle text-success-emphasis' : 'bg-warning-subtle text-warning-emphasis'">
+                    {{message.status}}
+                  </span>
+                </td>
+                <td>
+                  <div ng-if="message.status === 'Replied'" class="small text-secondary mb-2">{{message.admin_reply}}</div>
+                  <div class="input-group">
+                    <input class="form-control" ng-model="message.reply_text" placeholder="Type reply…">
+                    <button class="btn btn-outline-primary" ng-click="reply(message)" ng-disabled="message.replyBusy">
+                      {{message.replyBusy ? 'Saving…' : 'Reply'}}
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr ng-if="messages.length === 0"><td colspan="5" class="text-center text-secondary py-4">No inquiries yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

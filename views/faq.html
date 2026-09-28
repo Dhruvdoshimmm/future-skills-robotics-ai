@@ -1,0 +1,25 @@
+<section class="page-hero py-5">
+  <div class="container">
+    <div class="eyebrow">Questions & Answers</div>
+    <h1 class="display-5 fw-bold mt-2">Frequently Asked Questions</h1>
+    <p class="lead text-secondary mb-0">Common questions about the Future Skills Robotics & AI school program.</p>
+  </div>
+</section>
+
+<section class="section-space">
+  <div class="container" style="max-width: 900px">
+    <div class="accordion" id="faqAccordion">
+      <div class="accordion-item" ng-repeat="faq in faqs">
+        <h2 class="accordion-header" id="heading{{$index}}">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapse{{$index}}" aria-expanded="false" aria-controls="collapse{{$index}}">
+            {{faq.q}}
+          </button>
+        </h2>
+        <div id="collapse{{$index}}" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body text-secondary">{{faq.a}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

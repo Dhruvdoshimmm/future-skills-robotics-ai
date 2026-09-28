@@ -1,0 +1,53 @@
+<div ng-if="loading" class="loading"><div class="spinner-border text-primary"></div></div>
+<div ng-if="!loading">
+  <section class="page-hero py-5">
+    <div class="container">
+      <div class="eyebrow">{{content.eyebrow}}</div>
+      <h1 class="display-5 fw-bold mt-2">{{content.title}}</h1>
+      <p class="lead text-secondary mb-0">{{content.description}}</p>
+    </div>
+  </section>
+
+  <section class="section-space">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-5">
+          <div class="sticky-lg-top" style="top: 100px">
+            <div class="card-soft p-4">
+              <div class="eyebrow">Program at a glance</div>
+              <h3 class="fw-bold mt-2">10-month program</h3>
+              <p class="text-secondary">Full academic year coverage with 8 sessions each month and a progressive Grades 1–12 pathway.</p>
+              <div class="project-tag" ng-repeat="tag in content.technology_tags">{{tag}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <h2 class="fw-bold mb-4">Every month follows an 8-session journey</h2>
+          <div class="timeline">
+            <div class="timeline-item" ng-repeat="session in content.sessions">
+              <div class="small text-primary fw-bold">SESSION {{session.number}}</div>
+              <h5 class="fw-bold mt-1 mb-1">{{session.title}}</h5>
+              <p class="text-secondary mb-0">{{session.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-light">
+    <div class="container">
+      <div class="eyebrow">Grade-wise progressive learning path</div>
+      <h2 class="fw-bold mt-2 mb-4">One Curriculum, Four Learning Levels</h2>
+      <div class="row g-4">
+        <div class="col-md-6" ng-repeat="level in content.levels">
+          <div class="card-soft bg-white p-4">
+            <div class="icon-box mb-3">{{$index + 1}}</div>
+            <h5 class="fw-bold">{{level.grade}}</h5>
+            <p class="text-secondary mb-0">{{level.focus}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

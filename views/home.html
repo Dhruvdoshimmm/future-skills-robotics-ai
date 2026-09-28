@@ -1,0 +1,69 @@
+<div ng-if="loading" class="loading"><div class="spinner-border text-primary"></div></div>
+<div ng-if="!loading">
+  <section class="hero py-5 py-lg-6">
+    <div class="container section-space">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <div class="eyebrow text-info">{{content.hero_eyebrow}}</div>
+          <h1 class="display-4 fw-bold mt-3">{{content.hero_title}}</h1>
+          <p class="lead mt-4">{{content.hero_description}}</p>
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <a class="btn btn-primary btn-lg" href="#!/contact">Partner With Us</a>
+            <a class="btn btn-outline-light btn-lg" href="#!/scope">Explore the Program</a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="p-4 p-lg-5 rounded-4 bg-white text-dark shadow-lg">
+            <div class="eyebrow">Program at a glance</div>
+            <div class="row g-3 mt-2">
+              <div class="col-6"><div class="stat-card"><div class="stat-number">{{content.stats_months}}</div><div>Month Program</div></div></div>
+              <div class="col-6"><div class="stat-card"><div class="stat-number">{{content.stats_sessions}}</div><div>Sessions / Month</div></div></div>
+              <div class="col-6"><div class="stat-card"><div class="stat-number">{{content.stats_projects}}</div><div>Projects</div></div></div>
+              <div class="col-6"><div class="stat-card"><div class="stat-number">1–12</div><div>Grades</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space">
+    <div class="container">
+      <div class="text-center mb-5">
+        <div class="eyebrow">Why Robotics & AI Matter Now</div>
+        <h2 class="fw-bold mt-2">{{content.value_title}}</h2>
+        <p class="text-secondary mx-auto" style="max-width: 760px">{{content.value_description}}</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4" ng-repeat="item in content.value_props">
+          <div class="card-soft p-4">
+            <div class="icon-box mb-3">{{$index + 1}}</div>
+            <h5 class="fw-bold">{{item.title}}</h5>
+            <p class="text-secondary mb-0">{{item.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-light">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <div class="eyebrow">Zero Investment Model</div>
+          <h2 class="fw-bold mt-2">{{content.zero_investment_title}}</h2>
+          <p class="lead">{{content.zero_investment_description}}</p>
+        </div>
+        <div class="col-lg-6">
+          <div class="card-soft p-4 bg-white">
+            <div class="row g-3">
+              <div class="col-sm-4"><strong class="d-block">₹0</strong><span class="text-secondary">Setup Cost</span></div>
+              <div class="col-sm-4"><strong class="d-block">No</strong><span class="text-secondary">Hardware Purchase</span></div>
+              <div class="col-sm-4"><strong class="d-block">Zero</strong><span class="text-secondary">Financial Risk</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
