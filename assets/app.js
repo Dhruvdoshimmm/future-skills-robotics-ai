@@ -3,7 +3,7 @@
 
   var app = angular.module("futureSkillsApp", ["ngRoute"]);
 
-  app.constant("API_BASE", "https://future-skills-robotics-ai.vercel.app");
+app.constant("API_BASE", "http://localhost/future-skills/api.php");
 
   app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $locationProvider) {
     // Hash routing keeps this frontend deployable as static files on Vercel.
